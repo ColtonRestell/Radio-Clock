@@ -94,7 +94,6 @@ This project is currently in **prototype stage**: core firmware, UI, encoder han
 │
 ├── main.py # Core firmware (clock, UI, input, radio)
 ├── ssd1309.py # OLED driver (provided library)
-├── encoder/ # Encoder utilities (if externalized)
 ├── radio_driver.py # (currently embedded in main.py)
 └── README.md
 ---
