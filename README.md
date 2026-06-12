@@ -174,6 +174,11 @@ ECE 299 Project: Clock-radio system using a single Raspberry Pi Pico W with:
 
 ---
 
+## External Libraries
+
+- SSD1309 OLED driver (`ssd1309.py`)  
+  Source: https://github.com/rdagger/micropython-ssd1309
+  Used for SPI communication with the SSD1309 OLED display.
 ## Notes
 
 This is a prototype implementation focused on validating core functionality before hardware finalization. The architecture is designed to scale into the final PCB-based system.
