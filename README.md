@@ -94,7 +94,6 @@ This project is currently in **prototype stage**: core firmware, UI, encoder han
 │
 ├── main.py # Core firmware (clock, UI, input, radio)
 ├── ssd1309.py # OLED driver (provided library)
-├── radio_driver.py # (currently embedded in main.py)
 └── README.md
 ---
 
@@ -153,13 +152,13 @@ This project is currently in **prototype stage**: core firmware, UI, encoder han
 
 | Component        | Status        |
 |----------------|--------------|
-| Clock Logic     | In Progress |
-| Alarm System    | Partial     |
-| Radio Control   | Working     |
-| OLED UI         | Working     |
-| Encoder Input   | Working     |
-| PCB Design      | Not Started |
-| Enclosure       | Not Started |
+| Clock Logic     | Completed |
+| Alarm System    | Completed |
+| Radio Control   | Completed |
+| OLED UI         | Completed |
+| Encoder Input   | Completed |
+| PCB Design      | Completed |
+| Enclosure       | Completed |
 
 ---
 
