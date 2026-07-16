@@ -2,7 +2,7 @@
 
 A MicroPython-based clock-radio system built on the Raspberry Pi Pico W. The device combines real-time clock functionality with FM radio control, displayed on an SPI SSD1309 OLED and controlled via a rotary encoder and push button interface.
 
-This project is currently in **prototype stage**: core firmware, UI, encoder handling, radio control, and display system are implemented. PCB design and enclosure are still in progress.
+This project is currently in **Finished Stage**: core firmware, UI, encoder handling, radio control, and display system are implemented. PCB design and enclosure are still in progress.
 
 ---
 
@@ -132,9 +132,9 @@ This project is currently in **prototype stage**: core firmware, UI, encoder han
 - Improve audio output stage integration
 
 ### Hardware
-- Design 2-layer PCB (required for course)
+- Design 2-layer PCB 
 - Component layout optimization
-- Power regulation design (battery support if possible)
+- Power regulation design 
 
 ### UI/UX
 - Improve menu navigation
@@ -177,6 +177,5 @@ ECE 299 Project: Clock-radio system using a single Raspberry Pi Pico W with:
 - SSD1309 OLED driver (`ssd1309.py`)  
   Source: https://github.com/rdagger/micropython-ssd1309
   Used for SPI communication with the SSD1309 OLED display.
-## Notes
 
-This is a prototype implementation focused on validating core functionality before hardware finalization. The architecture is designed to scale into the final PCB-based system.
+
