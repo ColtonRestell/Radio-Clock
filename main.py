@@ -44,39 +44,46 @@ SPI_DEVICE = 0
 # frequency_hz == 0 means "rest" (silence) for that duration.
 # To add a new sound, just add a new list here and its name to
 # SOUND_NAMES - nothing else needs to change.
-#
-# To later swap these for real recordings (e.g. an actual rooster crow),
-# replace the body of AudioEngine.tick() with WAV-sample playback; every
-# other call site (PlayAlarm/StopAlarm/the button/alarm code) stays the
-# same because they only ever call the engine's play()/stop() API.
 # =====================================================================
 
-SOUND_NAMES = ["Rooster", "Bell", "Beep", "Birds", "Radio"]
+# =====================================================================
+# ALARM SOUNDS (procedural tone sequences)
+#
+# Each sound is a list of (frequency_hz, duration_ms) notes.
+# frequency_hz == 0 means "rest" (silence) for that duration.
+# To add a new sound, just add a new list here and its name to
+# SOUND_NAMES - nothing else needs to change.
+# =====================================================================
 
-# All alarm choices start at this level (0-15).  For Radio, this is the
-# radio-chip volume; for the tone sounds, it controls the PWM output level.
+SOUND_NAMES = ["Beep", "Radio"]
+
+# Alarm level (0-15).
 ALARM_VOLUME = 10
 
+
+def _build_siren(low=1400, high=2600, step=80, step_ms=12, sweeps=2, rest_ms=250):
+    # "Beep" is hardware-capped at max PWM duty (see PlayAlarm), so it
+    # can't get any louder. A rising/falling sweep is noticeably more
+    # attention-grabbing than a flat tone at the *same* volume, since a
+    # constant pitch is easy for the ear to tune out. This builds one
+    # up-down sweep repeated `sweeps` times, then a short rest, all as
+    # plain (freq, duration_ms) notes -- no change needed anywhere else.
+    notes = []
+    for _ in range(sweeps):
+        f = low
+        while f <= high:
+            notes.append((f, step_ms))
+            f += step
+        f = high
+        while f >= low:
+            notes.append((f, step_ms))
+            f -= step
+    notes.append((0, rest_ms))
+    return notes
+
+
 SOUNDS = {
-    "Rooster": [
-        (800, 150), (0, 40), (1200, 180), (0, 40),
-        (900, 320), (0, 500),
-    ],
-    "Bell": [
-        (1000, 120), (0, 60),
-        (1000, 120), (0, 60),
-        (1000, 120), (0, 60),
-        (1000, 120), (0, 500),
-    ],
-    "Beep": [
-        (2000, 150), (0, 150),
-        (2000, 150), (0, 150),
-        (2000, 150), (0, 500),
-    ],
-    "Birds": [
-        (1800, 70), (0, 35), (2200, 70), (0, 35),
-        (1600, 70), (0, 35), (2000, 90), (0, 500),
-    ],
+    "Beep": _build_siren(),
 }
 
 
@@ -143,7 +150,10 @@ class AudioEngine:
 Audio = AudioEngine(AudioPin)
 
 def PlayAlarm(sound_name, loop=True):
-    Audio.play(sound_name, loop, ALARM_VOLUME)
+    # Max out software volume -- see _apply_note: 50% PWM duty (volume=15)
+    # is the loudest a square wave can get this way, so this is already
+    # the ceiling without adding an amplifier stage in hardware.
+    Audio.play(sound_name, loop, volume=15)
 
 def StopAlarm():
     Audio.stop()
@@ -616,4 +626,3 @@ while True:
         UpdateDisplay = True
 
     time.sleep_ms(20)
-
