@@ -7,7 +7,7 @@ As instructed by P. Drissen, the use of Claude Code was used for parts of the de
 - **Microcontroller:** Raspberry Pi Pico 2 W
 - **Radio:** RDA5807 FM Module (I2C)
 - **Display:** SSD1309 OLED (SPI)
-- **Rotary Encoder:** Used for user navigation and control
+- **Rotary Encoder:** Used for user to adjust selected cycle
 - **Push Buttons:** Used for user input and mode selection
 - **Audio Amplifier:** LM386N-4 used to amplify the FM radio audio signal before driving the speaker.
 
