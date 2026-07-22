@@ -1,5 +1,6 @@
 # Animal-Themed Clock Radio (ECE 299)
 This project contains MicroPython firmware for the Raspberry Pi Pico 2 W, implementing an FM radio with an OLED display and a configurable alarm system. 
+
 As instructed by P. Drissen, the use of Claude Code was used for parts of the development.
 
 ## Hardware Overview
