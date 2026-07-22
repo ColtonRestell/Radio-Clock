@@ -2,7 +2,7 @@ from machine import Pin, SPI
 from ssd1309 import Display
 import time
 
-# OLED wiring (same pins as your clock program)
+
 spi = SPI(
     0,
     baudrate=1_000_000,
@@ -27,6 +27,6 @@ oled.draw_text8x8(0, 32, "SSD1309 is working")
 oled.draw_text8x8(0, 48, "Pins: 17-21")
 oled.present()
 
-# Keep the program running so the text remains displayed.
+
 while True:
     time.sleep(1)
